@@ -12,6 +12,8 @@
       #messages li { padding: 5px 10px; }
       #messages li:nth-child(odd) { background: #eee; }
       #messages { margin-bottom: 40px }
+      #Name {    position: absolute;    bottom: 50px; width: 90%;}
+      #Color {    position: absolute;    bottom: 75px; width: 90%;}
     </style>
   </head>
   <body>
@@ -19,27 +21,56 @@
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
     </form>
-    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <div id="Name">
+      Nombre:
+        <input type="text" id="txt_Nombre">
+    </div>
+    <div id="Color">
+      Color:
+        <input type="color" id="txt_color">
+    </div>
+
+
+
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
+    <script src="/socket.io/socket.io.js"></script>
+  <script>
+  $( document ).ready(function() {
+    $('#txt_color').change(function() {
+      if(this.value=='#000000')      {
+        $("body").css({ 'color': 'red' });
+      }
+      else {
+        {
+          $("body").css({ 'color': 'black' });
+        }
+      }
+       $("body").css("background-color",this.value); //edit, body must be in quotes!
+    });
+  });
+  $(function () {
+     var socket = io();
+     $('form').submit(function(){
+       socket.emit('chat message', $('#m').val());
+       $('#m').val('');
+       return false;
+     });
+     socket.on('chat message', function(msg){
+       if(!msg=='')
+       {
+         var usuario= 'Usuario dice:  ';
+         if(!$('#txt_Nombre').val()=='')
+         {
+           usuario=$('#txt_Nombre').val()+' dice: ';
+         }
+         $('#messages').append($('<li>').text(usuario+msg));
+       }
+       else{
+         alert('Escriba un mensaje');
+       }
+     });
+   });
 
-      $(function () {
-        var socket = io();
-
-        // emite evento al servidor
-        $('form').submit(function(){
-
-          // EMITIR EL MENSAJE DEL INPUT M
-
-          return false;
-        });
-
-        // Escucha el server
-        // ESCUCHAR EL EVENTO "Chat Message"
-        // IMPRIMIR EN PANTALLA EL MENSAJE DEL SERVER
-        // ejemplo: $('#messages').append($('<li>').text(AQUI_VA_EL_MENSAJE));
-
-      });
-    </script>
+  </script>
   </body>
 </html>
