@@ -2,8 +2,12 @@
     "name": "sample-api",
     "main": "server.js",
     "dependencies": {
+        "validator": "^10.8.0"
     },
     "scripts": {
-       "test": "mocha"
+        "test": "mocha"
+    },
+    "devDependencies": {
+        "mocha": "^5.2.0"
     }
 }

@@ -10,6 +10,6 @@
 // prueba de que sirve...
 var api = require('api');
 
-api.clima_ciudad('london', function(e){
+api.clima_ciudad('London', function(e){
   console.log(e.respuesta);
 });
