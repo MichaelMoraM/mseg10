@@ -1,0 +1,15 @@
+{
+  "name": "socket.io-chat-example",
+  "version": "0.0.2",
+  "description": "Cenfotec socket.io",
+  "dependencies": {
+    "@okta/oidc-middleware": "^1.0.2",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "openid-client": "^2.4.4",
+    "socket.io": "^1.7.4"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
