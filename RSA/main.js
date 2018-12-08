@@ -2,16 +2,21 @@
 // Este es el ejecutble principal
 // Proyecto 2 - MSEG10
 
-var rsa = require('cenfo-rsa');
 
-var C = rsa.encriptar("hola");
+//https://giltesa.com/2013/02/27/cifrar-y-descifrar-datos-con-el-sistema-criptografico-rsa
+//https://juncotic.com/rsa-como-funciona-este-algoritmo/
+//http://people.cs.pitt.edu/~kirk/cs1501/notes/rsademo/index.html
+
+var rsa = require('cenfo-rsa');
+var mensaje = "Este es el código que medio encripta las cosas";
+var C = rsa.encriptar(mensaje);
 var M = rsa.desencriptar(C);
 
-console.log(C);
-console.log(M);
-console.log(String.fromCharCode(65,66,67)); // :)
-console.log('A'.charCodeAt(0)); // :)
-console.log("fin de la ejecucion");
+console.log("Mensaje Original: " + mensaje);
+console.log("Mensaje encriptado: " + C);
+console.log("Mensaje des encriptado: " +M);
+
+console.log("--------------------------------");
 
 
 // Entregables de este proyecto:
